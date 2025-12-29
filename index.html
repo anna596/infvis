@@ -1,0 +1,73 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="description" content="">
+	<title>Income Exploration</title>
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+	<h1>Income Exploration Dashboard</h1>
+	<div id="dashboard" style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; padding: 20px;">
+		<section id="income-expl" >
+			<!-- Left side: controls -->
+			<div class="filters-panel" >
+				<div>
+					<label for="age-slider" style="display: block; margin-bottom: 2px; font-weight: bold;">Age</label>
+					<div id="age-slider"></div>
+				</div>
+				<div>
+					<label for="race-picker" style="display: block; margin-bottom: 2px; font-weight: bold;">Race</label>
+					<div class="dropdown" id="race-picker"></div>
+				</div>
+				<div>
+					<label for="workclass-picker" style="display: block; margin-bottom: 2px; font-weight: bold;">Workclass</label>
+					<div class="dropdown" id="workclass-picker"></div>
+				</div>
+				<div>
+					<label for="education-picker" style="display: block; margin-bottom: 2px; font-weight: bold;">Education</label>
+					<div class="dropdown" id="education-picker"></div>
+				</div>
+				<div>
+					<label for="occupation-picker" style="display: block; margin-bottom: 2px; font-weight: bold;">Occupation</label>
+					<div class="dropdown" id="occupation-picker"></div>
+				</div>
+				<div>
+					<label for="marital-picker" style="display: block; margin-bottom: 2px; font-weight: bold;">Marital Status</label>
+					<div class="dropdown" id="marital-picker"></div>
+				</div>
+				<div>
+					<label for="relationship-picker" style="display: block; margin-bottom: 2px; font-weight: bold;">Relationship</label>
+					<div class="dropdown" id="relationship-picker"></div>
+				</div>
+				
+			</div>
+
+			<!-- Right side: chart panel -->
+			<div class="viz-panel">
+				<div class="viz" id="income-expl-viz"></div>
+				<div class="viz" id="donut-chart"></div>
+			</div>
+		</section>
+
+		<section id="placeholder-2">
+			<h2>Visualization 2</h2>
+			<div class="viz"></div>
+		</section>
+		<section id="placeholder-3">
+			<h2>Visualization 3</h2>
+			<div class="viz"></div>
+		</section>
+		<section id="placeholder-4">
+			<h2>Visualization 4</h2>
+			<div class="viz"></div>
+		</section>
+	</div>
+
+	<!-- External JS libraries -->
+	<script src="https://d3js.org/d3.v7.min.js"></script>
+	 <script src="https://unpkg.com/d3-simple-slider"></script>
+	<!-- Custom JS (as modules) -->
+	<script type="module" src="js/main.js"></script>
+</body>
+</html>
