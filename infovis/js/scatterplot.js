@@ -2,12 +2,11 @@ export function createScatterplot(allData, dispatcher, colors) {
 
   function renderIntoTooltip(xVar, yVar, mode) {
     const container = d3.select("#tip-scatter");
-    if (container.empty()) return; // Tooltip evtl. schon weg
+    if (container.empty()) return; 
 
     container.selectAll("*").remove();
 
     if (mode !== "pearson") {
-      // Für kategoriale Variablen kein Scatterplot
       container
         .append("div")
         .style("opacity", 0.65)
@@ -31,7 +30,7 @@ export function createScatterplot(allData, dispatcher, colors) {
     let plotPts = pts;
     if (pts.length > MAX_POINTS) {
        const step = Math.ceil(pts.length / MAX_POINTS);
-       plotPts = pts.filter((_, i) => i % step === 0); // gleichmäßiges Sampling
+       plotPts = pts.filter((_, i) => i % step === 0); 
     }
 
     if (pts.length === 0) {
@@ -78,3 +77,4 @@ export function createScatterplot(allData, dispatcher, colors) {
     renderIntoTooltip(xVar, yVar, mode);
   });
 }
+
