@@ -26,7 +26,7 @@ export function createCorrelationMatrix(allData, dispatcher) {
   const controls = d3.select("#corr-controls");
   const container = d3.select("#corr-matrix-viz");
 
-   // wichtig für absolute Tooltip-Positionierung
+  
    container.style("position", "relative");
 
   if (controls.empty() || container.empty()) {
@@ -87,11 +87,10 @@ export function createCorrelationMatrix(allData, dispatcher) {
   .style("width", "100%")
   .style("height", "95px");
 
-// 👉 Klick-Logik ohne Ctrl
 varSelect.on("mousedown", function (event) {
   const option = event.target;
   if (option.tagName === "OPTION") {
-    event.preventDefault();           // verhindert Standard-Select
+    event.preventDefault();           
     option.selected = !option.selected;
 
     selected = Array.from(this.options)
@@ -265,14 +264,12 @@ const size = cellSize * vars.length;
     const g = svg.append("g")
       .attr("transform", `translate(${margin.left},${margin.top})`);
 
-    // Color scales:
-    // Pearson: diverging [-1,1]
-    // Cramér: sequential [0,1]
+  
     const color = mode === "pearson"
       ? d3.scaleDiverging([-1, 0, 1], d3.interpolateRdBu)
       : d3.scaleSequential([0, 1], d3.interpolateBlues);
 
-    // Tooltip
+ 
     const tip = container.append("div")
       .style("position", "absolute")
       .style("pointer-events", "none")
@@ -298,7 +295,6 @@ const size = cellSize * vars.length;
   .attr("stroke", "white")
 
   .on("mouseenter", (event, d) => {
-    // Tooltip anzeigen + Inhalt setzen
 
     const label = mode === "pearson" ? "r (Pearson)" : "V (Cramér's)";
     tip
@@ -313,7 +309,7 @@ const size = cellSize * vars.length;
         <div id="tip-scatter" style="width:260px; height:180px;"></div>
       `);
 
-    // Scatterplot nur für Pearson triggern
+
     if (dispatcher) {
       dispatcher.call("corrHover", null, { xVar: d.x, yVar: d.y, mode, value: d.value });
     }
@@ -322,8 +318,8 @@ const size = cellSize * vars.length;
   .on("mousemove", (event) => {
   const [mx, my] = d3.pointer(event, container.node());
 
-  const tooltipWidth = 300;   // etwas größer als tip-scatter (260px)
-  const tooltipHeight = 240;  // inkl. Titel + Padding
+  const tooltipWidth = 300;   
+  const tooltipHeight = 240; 
   const padding = 12;
 
   const containerNode = container.node();
@@ -391,7 +387,7 @@ const size = cellSize * vars.length;
       .style("font-size", "14px")
       .style("font-weight", "600")
       .text(mode === "pearson" ? "Pearson correlation matrix (numeric variables)" : "Cramér's V association matrix (categorical variables)");
-    // --- COLOR LEGEND (SCALE) ---
+  
 const legendHeight = size;
 const legendWidth = 14;
 
@@ -455,3 +451,4 @@ legendG.append("text")
   renderVarSelector(true);
   render();
 }
+
