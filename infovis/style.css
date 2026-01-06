@@ -1,0 +1,171 @@
+/* Two-column panel: filters (left) vs charts (right) */
+#income-expl {
+  display: grid !important;
+  grid-template-columns: 22% 78% !important; 
+  column-gap: 28px;
+  margin-right: 24px; 
+}
+
+.filters-panel {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+  overflow-x: hidden; 
+}
+
+
+.dropdown {
+  width: 100%;
+  max-width: 220px;     
+  box-sizing: border-box;
+}      
+
+#age-slider {
+  width: 100%;
+  max-width: 180px;    
+}
+
+
+#age-slider svg {
+  width: 100%;
+  height: 70px;
+  display: block;
+}
+
+.filters-panel label {
+  display: block;
+  margin-bottom: 2px;
+  font-weight: 600;
+  font-size: clamp(12px, 1.1vw, 16px);
+}
+
+select {
+  width: 100%;
+  box-sizing: border-box;
+  font-size: clamp(11px, 1vw, 14px);
+  padding: clamp(3px, 0.6vw, 6px);
+}
+
+.viz-panel {
+position: relative; 
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 10px;
+  display: grid;
+  grid-template-columns: 2fr 1fr;  /* bar : donut ratio on wide screens */
+  gap: 12px;
+  align-items: center;           
+  justify-items: center;           /* center each chart in its cell */
+}
+
+#income-expl-viz,
+#donut-chart {
+  width: 100%;
+  margin: 0;
+}
+
+#income-expl-viz svg,
+#donut-chart svg {
+  width: 100% !important;
+  height: auto !important;
+}
+
+/* Legend in the top-right corner */
+.legend {
+  position: absolute;
+  top: 8px;
+  right: 10px;
+  display: flex;
+  flex-direction: column; /* stack items */
+  gap: 8px;
+  padding: 4px 8px;
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 12px;
+}
+
+.legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.legend-swatch {
+  width: 12px;
+  height: 12px;
+  border: 1px solid #bbb;
+  border-radius: 2px;
+  display: inline-block;
+}
+
+/* Small screens: stack bar chart above donut */
+@media (max-width: 900px) {
+  .viz-panel {
+    grid-template-columns: 1fr;    /* stack vertically */
+    grid-auto-rows: auto;
+  }
+
+  #donut-chart {
+    width: 70%;
+  }
+}
+
+#corr-controls select, #corr-controls button {
+  font-size: 12px;
+  padding: 4px 6px;
+}
+
+#corr-controls button {
+  cursor: pointer;
+}
+
+/* Correlation explorer layout – same size as income explorer */
+
+
+#corr-expl {
+  display: grid;
+  grid-template-columns: max-content 1fr; /* 🔑 links so schmal wie Inhalt */
+  gap: 24px;
+  align-items: stretch;                   /* gleiche Höhe erzwingen */
+}
+
+#corr-expl .filters-panel,
+#corr-expl .corr-viz-panel {
+  height: 100%;
+  min-height: 520px;   /* ggf. feinjustieren: 500–560 */
+}
+
+/* rechte Box: nur eine große Visualisierung */
+.corr-viz-panel {
+  display: flex;
+  justify-content: stretch;
+  align-items: stretch;     /* 🔑 nicht zentrieren, sondern füllen */
+}
+
+#corr-matrix-viz {
+  width: 100%;
+  height: 100%;
+}
+
+#corr-controls select,
+#corr-controls button {
+  width: 100%;
+  max-width: 220px;   /* 🔑 begrenzt die Breite */
+  box-sizing: border-box;
+}
+
+#corr-controls select[multiple] {
+  height: 90px;
+}
+
+#income-expl .filters-panel,
+#income-expl .viz-panel,
+#corr-expl .filters-panel,
+#corr-expl .corr-viz-panel {
+  min-height: 520px;
+}
