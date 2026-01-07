@@ -114,3 +114,55 @@ position: relative;
     width: 70%;
   }
 }
+
+#multiselct-num {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-right: 12px;
+  user-select: none;
+}
+
+/* Boxplot */
+/* checkbox layout */
+#boxplot-picker label {
+  margin-right: 12px;
+  user-select: none;
+}
+
+/* optional: give the chart area a little breathing room */
+#boxplot-viz {
+  margin-top: 8px;
+}
+
+/* boxplot styling */
+#boxplot-viz .iqr {
+  fill: #b1d9f6;          /* light blue box */
+  stroke: #5380b6;        /* blue outline */
+  stroke-width: 1;
+}
+
+#boxplot-viz .median,
+#boxplot-viz .whisker,
+#boxplot-viz .fence {
+  stroke: #5380b6;        /* blue lines */
+  stroke-width: 1.5;
+}
+
+/* make median line a bit stronger */
+#boxplot-viz .median {
+  stroke-width: 2;
+}
+
+/* invisible “hit” line for easier hover */
+#boxplot-viz .median-hit {
+  stroke: transparent;
+  stroke-width: 14;
+  pointer-events: stroke;
+}
+
+/* optional: outliers */
+#boxplot-viz .outliers circle {
+  stroke: #5380b6;
+  fill: #5380b6;
+}

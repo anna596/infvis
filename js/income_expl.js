@@ -71,7 +71,7 @@ export function createIncomeExploration(data, colors) {
 	});
 
 	createDropdown('marital-picker', data, 'marital_status', (value) => {
-		filters.marital_status = value;
+		filters.marital = value;
 		rerender();
 	});
 
