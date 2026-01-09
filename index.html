@@ -50,18 +50,32 @@
 			</div>
 		</section>
 
-		<section id="placeholder-2">
-			<h2>Boxplots</h2>
-			<div id="boxplot-picker"></div>
-			<div id="boxplot-viz"></div>
+		<section id="box-expl">
+			<!-- Left side -->
+			<div class="filters-panel">
+				<div id="boxplot-picker"></div>
+			</div>
+			
+			<!-- Righ side -->
+			<div class="box-viz">
+				<div id="boxplot-viz"></div>
+			</div>
 		</section>
-		<section id="placeholder-3">
-			<h2>Visualization 3</h2>
-			<div class="viz"></div>
-		</section>
-		<section id="placeholder-4">
-			<h2>Visualization 4</h2>
-			<div class="viz"></div>
+		
+		<section id="corr-scatter">
+			<div id="corr-expl">
+				<!-- Left side: controls (same look as income explorer) -->
+				<div class="filters-panel">
+					<div id="corr-controls"></div>
+				</div>
+
+				<!-- Right side: visualization panel -->
+				<div class="viz-panel corr-viz-panel">
+					<div class="viz" id="corr-matrix-viz"></div>
+					<!-- optional: lassen wir drin, auch wenn aktuell ungenutzt -->
+					<div class="viz" id="scatterplot"></div>
+				</div>
+			</div>
 		</section>
 	</div>
 

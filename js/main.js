@@ -1,5 +1,7 @@
 import { createIncomeExploration } from "./income_expl.js";
 import { createBoxplot } from "./boxplots.js";
+import { createCorrelationMatrix } from "./corr_matrix.js";
+import { createScatterplot } from "./scatterplot.js";
 
 d3.csv("/adult.csv", d => {
     return{
@@ -29,6 +31,14 @@ d3.csv("/adult.csv", d => {
 
     createIncomeExploration(data, colors);
     createBoxplot(data);
+    
+    // Event-Bus für Hover aus der Matrix → Scatterplot
+    const dispatcher = d3.dispatch("corrHover");
+
+    createCorrelationMatrix(data, dispatcher);
+    createScatterplot(data, dispatcher, colors);
+
+    
 }).catch(err => {
     console.error("Error loading CSV:", err);
 });
