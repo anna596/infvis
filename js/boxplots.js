@@ -38,9 +38,9 @@ function createMultiselection(containerId, items, onSelectionChange) {
 	container.selectAll("*").remove();
 
     const rows = container
-        .selectAll("lable")
+        .selectAll("label")
         .data(items, d => d.key)
-        .join("lable")
+        .join("label")
     ;
     
     // render
@@ -58,7 +58,7 @@ function createMultiselection(containerId, items, onSelectionChange) {
     rows.append("span").text(d => `${d.label}`); // for every <label> in rows add text thats shown
 
     // intital render, with none selected
-    onselectionchange([]);
+    onSelectionChange([]);
 }
 
 function renderBoxplot(fullData, selectedKeys, numericalVars) {
