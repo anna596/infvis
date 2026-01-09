@@ -1,4 +1,5 @@
 import { createIncomeExploration } from "./income_expl.js";
+import { createBoxplot } from "./boxplots.js";
 
 d3.csv("/adult.csv", d => {
     return{
@@ -27,6 +28,7 @@ d3.csv("/adult.csv", d => {
         .range(["#5380b6", "#b1d9f6"]);
 
     createIncomeExploration(data, colors);
+    createBoxplot(data);
 }).catch(err => {
     console.error("Error loading CSV:", err);
 });

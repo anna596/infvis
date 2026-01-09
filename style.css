@@ -114,3 +114,59 @@ position: relative;
     width: 70%;
   }
 }
+
+#multiselct-num {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-right: 12px;
+  user-select: none;
+}
+
+/* Boxplot */
+#boxplot-picker label {
+  margin-right: 12px;
+  user-select: none;
+}
+
+#boxplot-viz {
+  margin-top: 8px;
+}
+
+#boxplot-viz .iqr {
+  fill: #b1d9f6;       
+  stroke: #000;  
+  stroke-width: 1;
+}
+
+#boxplot-viz .whiskers {
+  stroke: #000;       
+  stroke-width: 1;
+}
+
+#boxplot-viz .fence-low {
+  stroke: #000;       
+  stroke-width: 1.5;
+}
+
+#boxplot-viz .fence-high {
+  stroke: #000;       
+  stroke-width: 1.5;
+}
+
+#boxplot-viz .median {
+  stroke: #000; 
+  stroke-width: 2;
+}
+
+#boxplot-viz .median-hit {
+  stroke: transparent;
+  stroke-width: 14;
+  pointer-events: stroke;
+}
+
+#boxplot-viz .outliers circle {
+  stroke: #000;
+  stroke-width: 0.75;
+  fill: #5380b6;
+}
