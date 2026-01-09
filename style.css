@@ -118,9 +118,9 @@ position: relative;
 /* Boxplot */
 
 #boxplot-picker label{
-  display: flex;          /* Checkbox + Text in einer Zeile */
+  display: inline-flex;
   align-items: center;
-  gap: 8px;
+  gap: 5px;
   margin: 8px 0;  
   user-select: none; 
 }
