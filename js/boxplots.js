@@ -72,8 +72,9 @@ function renderBoxplot(fullData, selectedKeys, numericalVars) {
     // If nothing selcted --> massage
     if (!selectedKeys || selectedKeys.length == 0){
         container.append("div")
-            .style("font-size", "10px")
-            .text("No variables are selected.");
+            .style("font-size", "16px")
+            .style("opacity", "0.7")
+            .text("Select at least one variable.");
         return;
     }
 
