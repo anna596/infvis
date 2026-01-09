@@ -175,9 +175,9 @@ function renderBoxplot(fullData, selectedKeys, numericalVars) {
         const lineStroke = "#000"; 
         const capW = bw * 0.5; // width of fence caps
 
-        // whisker (vertical line)
+        // whiskers (vertical line)
         g.append("line")
-        .attr("class", "whisker")
+        .attr("class", "whiskers")
         .attr("x1", cx).attr("x2", cx)
         .attr("y1", yScale(d.stats.lo))
         .attr("y2", yScale(d.stats.hi))
@@ -185,6 +185,7 @@ function renderBoxplot(fullData, selectedKeys, numericalVars) {
 
         // horizontal line at lo anf hi
         g.append("line")
+            .attr("class", "fence-low")
             .attr("x1", cx - capW/2).attr("x2", cx + capW/2)
             .attr("y1", yScale(d.stats.lo))
             .attr("y2", yScale(d.stats.lo))
@@ -192,6 +193,7 @@ function renderBoxplot(fullData, selectedKeys, numericalVars) {
         ;
 
         g.append("line")
+            .attr("class", "fence-high")
             .attr("x1", cx - capW/2).attr("x2", cx + capW/2)
             .attr("y1", yScale(d.stats.hi))
             .attr("y2", yScale(d.stats.hi))
