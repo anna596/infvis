@@ -32,7 +32,7 @@ d3.csv("/adult.csv", d => {
     createIncomeExploration(data, colors);
     createBoxplot(data);
     
-    // Event-Bus für Hover aus der Matrix → Scatterplot
+    // Event-Bus for Hover from Matrix to Scatterplot
     const dispatcher = d3.dispatch("corrHover");
 
     createCorrelationMatrix(data, dispatcher);

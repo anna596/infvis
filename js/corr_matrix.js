@@ -2,7 +2,9 @@
 // Renders either:
 // - Pearson correlation heatmap for numeric vars
 // - Cramér's V heatmap for categorical vars
+
 export function createCorrelationMatrix(allData, dispatcher) {
+  //definition of numeric and categorial variables
   const numericVars = [
     "age",
     "education_num",
@@ -23,40 +25,45 @@ export function createCorrelationMatrix(allData, dispatcher) {
     "income",
   ];
 
+  //define controls and container, saved as d3 object
+
   const controls = d3.select("#corr-controls");
   const container = d3.select("#corr-matrix-viz");
 
-  
+  // use container as coordinate system
    container.style("position", "relative");
 
+  // control 
   if (controls.empty() || container.empty()) {
     console.warn("Correlation matrix: containers not found (#corr-controls, #corr-matrix-viz).");
   return;
     }
-
+  
+  //to restart application 
   controls.selectAll("*").remove();
   container.selectAll("*").remove();
 
-  // --- UI state
-  let mode = "pearson"; // "pearson" | "cramersv"
-  let selected = [...numericVars]; // default
+  //define "switch", will need later & define array with numerical variables, need later, so we dont overwirte numVars
+  let mode = "pearson"; //only "pearson" or "cramersv"
+  let selected = [...numericVars];
 
-  // --- UI: mode select
+  // add new "div" in #corr-controls 
   const row = controls.append("div")
-  .style("display", "flex")
-  .style("flex-direction", "column")
-  .style("gap", "14px");
+  .style("display", "flex") //"child"- elements use flexbox
+  .style("flex-direction", "column") //order elements in row colum-wise
+  .style("gap", "14px"); //gap between "child"-elements 14px
 
-
+    //label for dropdown menu
   row.append("label")
-    .style("font-weight", "600")
-    .text("Measure:");
+    .style("font-weight", "600") //font half bold
+    .text("Measure:"); //label is measure
 
+  //add select element in row  
   const modeSelect = row.append("select")
-    .on("change", function () {
-      mode = this.value;
+    .on("change", function () {     //code runs, if user selects something in drop down
+      mode = this.value;            // show the value of pearson or cramersv, deüending on mode
 
-      selected = mode === "pearson"
+      selected = mode === "pearson"     //if-else, if pearson, select copy of numeric vars, if not select categVars
         ? [...numericVars]
         : [...categoricalVars];
 
@@ -65,38 +72,46 @@ export function createCorrelationMatrix(allData, dispatcher) {
       render();
     });
 
+  //Define dropdown options using data binding
   modeSelect.selectAll("option")
     .data([
       { value: "pearson", text: "Pearson (numeric)" },
       { value: "cramersv", text: "Cramér's V (categorical)" },
     ])
     .join("option")
-    .attr("value", d => d.value)
+    .attr("value", d => d.value)                    // internal value
     .property("selected", d => d.value === mode)
-    .text(d => d.text);
+    .text(d => d.text);                             // visible label
 
-  // --- UI: variable multi-select
+  //variable multi-select, same as above
   const selectorWrap = row.append("div")
   .style("display", "flex")
   .style("flex-direction", "column")
   .style("gap", "8px");
-  selectorWrap.append("label").style("font-weight", "600").text("Variables:");
+
+  //add label to selectorWrap
+  selectorWrap.append("label")
+  .style("font-weight", "600")
+  .text("Variables:");
 
   const varSelect = selectorWrap.append("select")
-  .attr("multiple", true)
+  .attr("multiple", true)         //allow multiply selections
   .style("width", "100%")
   .style("height", "95px");
 
+ //runs if mouse is getting pressed,  
 varSelect.on("mousedown", function (event) {
   const option = event.target;
-  if (option.tagName === "OPTION") {
-    event.preventDefault();           
+
+  if (option.tagName === "OPTION") {              //if a real option gets pressed, not just somewhere on screen
+    event.preventDefault();                       //get multi-selection
     option.selected = !option.selected;
 
-    selected = Array.from(this.options)
+    selected = Array.from(this.options)           //just selected ones
       .filter(o => o.selected)
       .map(o => o.value);
 
+    //re-render  
     render();
   }
 });
@@ -146,7 +161,7 @@ varSelect.on("mousedown", function (event) {
     }
   }
 
-  // --- Stats helpers
+  //Stats helpers
   function pearson(x, y) {
     const n = Math.min(x.length, y.length);
     const mx = d3.mean(x);
@@ -203,8 +218,10 @@ varSelect.on("mousedown", function (event) {
     return denom > 0 ? Math.sqrt(chi2 / denom) : 0;
   }
 
+
+  //returns { x: "age", y: "hours_per_week", value: 0.23 } for each entry
   function buildMatrix() {
-    if (!selected.length) return [];
+    if (!selected.length) return [];      //stop if nothing selected
 
     if (mode === "pearson") {
       // vectors for each selected numeric var
@@ -448,7 +465,7 @@ legendG.append("text")
 
   }
 
-  // initial
+  // re-render
   renderVarSelector(true);
   render();
 }
